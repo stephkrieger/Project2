@@ -1,0 +1,12 @@
+---
+title: "Data"
+format: html
+editor: visual
+editor_options: 
+  chunk_output_type: inline
+---
+
+```{r}
+satresults <- read.csv("2012_SAT_Results_20260407.csv")
+```
+
