@@ -1,0 +1,15 @@
+---
+title: "Proposal"
+format: html
+editor: visual
+---
+
+Group Members: Ysabella, Eliel, and Steph
+
+Data: Our data is from NYC Open Data and contains the mean SAT scores for 2012 college-bound seniors attending a New York high school. There are 478 observations, each representing one school, and 6 variables. The variables are: DBN, SCHOOL.NAME, Num.of.SAT.Test.Takers, SAT.Critical.Reading.Avg..Score, SAT.Math.Avg..Score, and SAT.writing.Avg..Score. The information was gathered through the Department of Education.
+
+```{r}
+satresults <- read.csv("2012_SAT_Results_20260407.csv")
+```
+
+Research Aim: With this data set we plan to answer the question, which New York high school has the highest mean total SAT score, and highest score for each of the three sections. The variables we plan to use are, SCHOOL.NAME, SAT.Critical.Reading.Avg..Score, SAT.writing.Avg..Score, and SAT.Math.Avg..Score. Additionally we will look at trends for the schools with the highest/lowest SAT scores and see if their are similarities between them that could lead to there mean scores.
