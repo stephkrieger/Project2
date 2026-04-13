@@ -13,3 +13,7 @@ satresults <- read.csv("2012_SAT_Results_20260407.csv")
 ```
 
 Research Aim: With this data set we plan to answer the question, which New York high school has the highest mean total SAT score, and highest score for each of the three sections. The variables we plan to use are, SCHOOL.NAME, SAT.Critical.Reading.Avg..Score, SAT.writing.Avg..Score, and SAT.Math.Avg..Score. Additionally we will look at trends for the schools with the highest/lowest SAT scores and see if their are similarities between them that could lead to there mean scores.
+
+Jericho's feedback: This looks promising! The question you ask is definitely worthy to investigate, however you are very limited in what you can explore with the schools themselves. Your analysis can definitely target which schools have the highest scores across various categories and in total. One suggestion I have however to expand upon this is to see if NYC Open Data has additional information about those same schools, such as geographic variables, demographics, and general information. This can extend your question to looking at potential relationships between the highest scoring schools and additional variables related to the school. If anything, investigating these schools spatially would be interesting to look at. 
+
+Thus, your question is good to go, but I would definitely try to find additional data related to each of the schools that you can then join to the SAT dataset you found.
