@@ -1,5 +1,5 @@
 ---
-title: "Data"
+title: "data"
 format: html
 editor: visual
 editor_options: 
@@ -7,6 +7,7 @@ editor_options:
 ---
 
 ```{r}
-satresults <- read.csv("2012_SAT_Results_20260407.csv")
-```
+satresults <- read.csv("~/Documents/SDS 192/Project 2/2012_SAT_Results_20260407.csv")
 
+demographics <- read.csv("~/Documents/SDS 192/Project 2/2006_-_2012_School_Demographics_and_Accountability_Snapshot_20260415.csv")
+```
