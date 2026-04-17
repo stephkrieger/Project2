@@ -1,0 +1,32 @@
+---
+title: "Data Tidying"
+format: html
+editor: visual
+editor_options: 
+  chunk_output_type: inline
+---
+```{r}
+library(ggplot2)
+library(tidyverse)
+```
+
+
+
+```{r}
+satresults <- read.csv("2012_SAT_Results_20260407.csv")
+
+demographics <- read.csv("2006_-_2012_School_Demographics_and_Accountability_Snapshot_20260415.csv")
+```
+
+```{r}
+data <- inner_join(demographics, satresults, by = "DBN")
+
+data <- data |>
+  filter(schoolyear == 20112012) |>
+  select(DBN, Name, schoolyear, total_enrollment, SAT.Critical.Reading.Avg..Score, SAT.Math.Avg..Score, SAT.Writing.Avg..Score, Num.of.SAT.Test.Takers, male_num, male_per, female_num, female_per, black_num, black_per, white_num, white_per, hispanic_num, hispanic_per, asian_num, asian_per, selfcontained_num, ctt_num, sped_num, sped_percent, ell_num, ell_percent,)
+```
+
+
+
+
+
