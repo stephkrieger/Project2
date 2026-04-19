@@ -5,28 +5,55 @@ editor: visual
 editor_options: 
   chunk_output_type: inline
 ---
+
 ```{r}
 library(ggplot2)
 library(tidyverse)
 ```
 
-
-
 ```{r}
+# loading in data sets
 satresults <- read.csv("2012_SAT_Results_20260407.csv")
 
 demographics <- read.csv("2006_-_2012_School_Demographics_and_Accountability_Snapshot_20260415.csv")
 ```
 
 ```{r}
+# joining data sets by unique key "DBN"
+
 data <- inner_join(demographics, satresults, by = "DBN")
 
+```
+
+```{r}
+# filtering to year 2011/2012 and mutating a total SAT score variable
 data <- data |>
-  filter(schoolyear == 20112012) |>
-  select(DBN, Name, schoolyear, total_enrollment, SAT.Critical.Reading.Avg..Score, SAT.Math.Avg..Score, SAT.Writing.Avg..Score, Num.of.SAT.Test.Takers, male_num, male_per, female_num, female_per, black_num, black_per, white_num, white_per, hispanic_num, hispanic_per, asian_num, asian_per, selfcontained_num, ctt_num, sped_num, sped_percent, ell_num, ell_percent,)
+  filter(schoolyear == 20112012) |> 
+  mutate(SAT.Total =
+    as.numeric(SAT.Critical.Reading.Avg..Score) +
+    as.numeric(SAT.Math.Avg..Score) +
+    as.numeric(SAT.Writing.Avg..Score))
+
+# filtering out schools with N/A for SAT.Total variable
+
+data <- data |>
+  filter(!is.na(SAT.Total))
+```
+
+```{r}
+# making SAT variables numeric
+data <- data |>
+  mutate(across(c(
+    SAT.Critical.Reading.Avg..Score,
+    SAT.Math.Avg..Score,
+    SAT.Writing.Avg..Score
+  ), ~as.numeric(.)))
 ```
 
 
-
-
+```{r}
+# selecting variables of interest
+data <- data |>
+select(DBN, Name, schoolyear, total_enrollment, SAT.Critical.Reading.Avg..Score, SAT.Math.Avg..Score, SAT.Writing.Avg..Score, Num.of.SAT.Test.Takers, male_num, male_per, female_num, female_per, black_num, black_per, white_num, white_per, hispanic_num, hispanic_per, asian_num, asian_per, selfcontained_num, ctt_num, sped_num, sped_percent, ell_num, ell_percent, SAT.Total)
+```
 
