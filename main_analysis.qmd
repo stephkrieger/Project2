@@ -26,7 +26,7 @@ ggplot(data = sat_data, aes(x = SAT.Total)) +
   geom_histogram(fill = "grey") +
   labs(
     title = "Distrubution of SAT Scores Across NYC High Schools,\n2011 - 2012",
-    x = "SAT Score",
+    x = "SAT Score (0-2400)",
     y = "# of Schools"
   ) +
   geom_vline(xintercept = mean(sat_data$SAT.Total, na.rm = TRUE), color = "red", linetype = "dashed") +
