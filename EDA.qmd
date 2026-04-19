@@ -1,0 +1,78 @@
+---
+title: "analysis"
+format: html
+editor: visual
+editor_options: 
+  chunk_output_type: inline
+---
+
+```{r}
+library(ggplot2)
+library(tidyverse)
+```
+
+```{r}
+# reading in tidied data
+read_csv("sat_data.csv")
+```
+
+Steph's Section:
+
+```{r}
+# Analyzing SAT scores in a histogram
+
+ggplot(data = sat_data, aes(x = SAT.Total)) +
+  geom_histogram() +
+  labs(
+    title = "Distrubution of SAT Scores Across NYC High Schools,\n2011 - 2012",
+    x = "SAT Score",
+    y = "# of Schools"
+  ) +
+  geom_vline(xintercept = mean(sat_data$SAT.Total, na.rm = TRUE), color = "red") +
+  theme_classic()
+```
+
+```{r}
+# Analyzing SAT Scores in a summary table
+
+library(gt)
+summary_table <- tibble(
+  Metric = c("Lowest SAT Score", "Highest SAT Score"),
+  
+  Score = c(
+    min(sat_data$SAT.Total, na.rm = TRUE),
+    max(sat_data$SAT.Total, na.rm = TRUE)
+  ),
+  
+  School = c(
+    sat_data$Name[which.min(sat_data$SAT.Total)],
+    sat_data$Name[which.max(sat_data$SAT.Total)]
+  ),
+  
+  Test_Takers = c(
+    sat_data$Num.of.SAT.Test.Takers[which.min(sat_data$SAT.Total)],
+    sat_data$Num.of.SAT.Test.Takers[which.max(sat_data$SAT.Total)]
+  )
+)
+
+summary_table$School[is.na(summary_table$School)] <- "—"
+
+summary_table |>
+  gt() |>
+  tab_header(
+    title = "NYC High School SAT Scores (2011–2012)"
+  ) |>
+  cols_label(
+    Metric = "Metric",
+    Score = "SAT Score",
+    School = "School Name",
+    Test_Takers = "Number of Test Takers"
+  ) |>
+  fmt_number(
+    columns = Score,
+    decimals = 1
+  ) |>
+  tab_options(
+    table.font.size = px(14)
+  )
+```
