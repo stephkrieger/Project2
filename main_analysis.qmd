@@ -9,11 +9,12 @@ editor_options:
 ```{r}
 library(ggplot2)
 library(tidyverse)
+library(readr)
 ```
 
 ```{r}
 # reading in tidied data
-read_csv("sat_data.csv")
+sat_data <- read_csv("sat_data.csv")
 ```
 
 Steph's Section:
@@ -22,13 +23,13 @@ Steph's Section:
 # Analyzing SAT scores in a histogram
 
 ggplot(data = sat_data, aes(x = SAT.Total)) +
-  geom_histogram() +
+  geom_histogram(fill = "grey") +
   labs(
     title = "Distrubution of SAT Scores Across NYC High Schools,\n2011 - 2012",
     x = "SAT Score",
     y = "# of Schools"
   ) +
-  geom_vline(xintercept = mean(sat_data$SAT.Total, na.rm = TRUE), color = "red") +
+  geom_vline(xintercept = mean(sat_data$SAT.Total, na.rm = TRUE), color = "red", linetype = "dashed") +
   theme_classic()
 ```
 
