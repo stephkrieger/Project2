@@ -21,13 +21,13 @@ demographics <- read.csv("2006_-_2012_School_Demographics_and_Accountability_Sna
 ```{r}
 # joining data sets by unique key "DBN"
 
-data <- inner_join(demographics, satresults, by = "DBN")
+sat_data <- inner_join(demographics, satresults, by = "DBN")
 
 ```
 
 ```{r}
 # filtering to year 2011/2012 and mutating a total SAT score variable
-data <- data |>
+sat_data <- sat_data |>
   filter(schoolyear == 20112012) |> 
   mutate(SAT.Total =
     as.numeric(SAT.Critical.Reading.Avg..Score) +
@@ -36,13 +36,13 @@ data <- data |>
 
 # filtering out schools with N/A for SAT.Total variable
 
-data <- data |>
+sat_data <- sat_data |>
   filter(!is.na(SAT.Total))
 ```
 
 ```{r}
 # making SAT variables numeric
-data <- data |>
+sat_data <- sat_data |>
   mutate(across(c(
     SAT.Critical.Reading.Avg..Score,
     SAT.Math.Avg..Score,
@@ -50,10 +50,13 @@ data <- data |>
   ), ~as.numeric(.)))
 ```
 
-
 ```{r}
 # selecting variables of interest
-data <- data |>
+sat_data <- sat_data |>
 select(DBN, Name, schoolyear, total_enrollment, SAT.Critical.Reading.Avg..Score, SAT.Math.Avg..Score, SAT.Writing.Avg..Score, Num.of.SAT.Test.Takers, male_num, male_per, female_num, female_per, black_num, black_per, white_num, white_per, hispanic_num, hispanic_per, asian_num, asian_per, selfcontained_num, ctt_num, sped_num, sped_percent, ell_num, ell_percent, SAT.Total)
 ```
 
+```{r}
+# Creating csv of tidied data
+write.csv(sat_data, "sat_data.csv", row.names = FALSE)
+```
