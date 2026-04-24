@@ -17,6 +17,8 @@ library(readr)
 sat_data <- read_csv("sat_data.csv")
 ```
 
+Steph's Section:
+
 ```{r}
 # Analyzing SAT math scores in a histogram
 
@@ -54,3 +56,17 @@ ggplot(data = sat_data, aes(x = SAT.Writing.Avg..Score)) +
   geom_vline(xintercept = median(sat_data$SAT.Writing.Avg..Score, na.rm = TRUE), color = "red", linetype = "dashed") +
   theme_classic()
 ```
+
+Eliel's Section: 
+```{r}
+# analyzing how collaborative class number affects english SAT scores through scatter plot.
+ggplot(data= sat_data,
+       aes(x= SAT.English, y= ell_num))+
+         geom_point(position= "jitter")+
+         geom_smooth()+
+         theme_minimal()+
+         labs(title= "Correlation of English Learner Classes and SAT \nEnglish Scores, 2011 - 2012",
+              x= "English Score",
+              y= "English Learner Class numbers")
+```
+
