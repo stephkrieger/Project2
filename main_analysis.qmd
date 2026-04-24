@@ -29,14 +29,15 @@ ggplot(data = sat_data, aes(x = SAT.Total)) +
     x = "SAT Score (0-2400)",
     y = "# of Schools"
   ) +
-  geom_vline(xintercept = mean(sat_data$SAT.Total, na.rm = TRUE), color = "red", linetype = "dashed") +
+  geom_vline(xintercept = median(sat_data$SAT.Total, na.rm = TRUE), color = "red", linetype = "dashed") +
   theme_classic()
 ```
 
 ```{r}
 # Analyzing SAT Scores in a summary table
-
 library(gt)
+library(tibble)
+
 summary_table <- tibble(
   Metric = c("Lowest SAT Score", "Highest SAT Score"),
   
@@ -56,6 +57,7 @@ summary_table <- tibble(
   )
 )
 
+# Replace NA school names
 summary_table$School[is.na(summary_table$School)] <- "—"
 
 summary_table |>
