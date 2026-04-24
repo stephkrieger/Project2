@@ -57,7 +57,8 @@ ggplot(data = sat_data, aes(x = SAT.Writing.Avg..Score)) +
   theme_classic()
 ```
 
-Eliel's Section: 
+Eliel's Section:
+
 ```{r}
 # analyzing how collaborative class number affects english SAT scores through scatter plot.
 ggplot(data= sat_data,
@@ -69,4 +70,3 @@ ggplot(data= sat_data,
               x= "English Score",
               y= "English Learner Class numbers")
 ```
-
