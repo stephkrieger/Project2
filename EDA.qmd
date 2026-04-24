@@ -5,6 +5,7 @@ editor: visual
 editor_options: 
   chunk_output_type: inline
 ---
+
 ```{r}
 library(ggplot2)
 library(tidyverse)
@@ -16,17 +17,19 @@ library(readr)
 sat_data <- read_csv("sat_data.csv")
 ```
 
+Steph's Section:
+
 ```{r}
 # Analyzing SAT math scores in a histogram
 
 ggplot(data = sat_data, aes(x = SAT.Math.Avg..Score)) +
   geom_histogram(fill = "grey") +
   labs(
-    title = "Distrubution of SAT Math Scores Across NYC High Schools,\n2011 - 2012",
+    title = "Distrubution of SAT Math Scores Across\nNYC High Schools, 2011 - 2012",
     x = "SAT Score (0-800)",
     y = "# of Schools"
   ) +
-  geom_vline(xintercept = mean(sat_data$SAT.Math.Avg..Score, na.rm = TRUE), color = "red", linetype = "dashed") +
+  geom_vline(xintercept = median(sat_data$SAT.Math.Avg..Score, na.rm = TRUE), color = "red", linetype = "dashed") +
   theme_classic()
 
 # Analyzing SAT Critical Reading scores in a histogram
@@ -34,11 +37,11 @@ ggplot(data = sat_data, aes(x = SAT.Math.Avg..Score)) +
 ggplot(data = sat_data, aes(x = SAT.Critical.Reading.Avg..Score)) +
   geom_histogram(fill = "grey") +
   labs(
-    title = "Distrubution of SAT Critical Reading Scores Across NYC High Schools,\n2011 - 2012",
+    title = "Distrubution of SAT Critical Reading Scores Across\nNYC High Schools, 2011 - 2012",
     x = "SAT Score (0-800)",
     y = "# of Schools"
   ) +
-  geom_vline(xintercept = mean(sat_data$SAT.Critical.Reading.Avg..Score, na.rm = TRUE), color = "red", linetype = "dashed") +
+  geom_vline(xintercept = median(sat_data$SAT.Critical.Reading.Avg..Score, na.rm = TRUE), color = "red", linetype = "dashed") +
   theme_classic()
 
 # Analyzing SAT Writing scores in a histogram
@@ -46,13 +49,24 @@ ggplot(data = sat_data, aes(x = SAT.Critical.Reading.Avg..Score)) +
 ggplot(data = sat_data, aes(x = SAT.Writing.Avg..Score)) +
   geom_histogram(fill = "grey") +
   labs(
-    title = "Distrubution of SAT Writing Scores Across NYC High Schools,\n2011 - 2012",
+    title = "Distrubution of SAT Writing Scores Across\nNYC High Schools, 2011 - 2012",
     x = "SAT Score (0-800)",
     y = "# of Schools"
   ) +
-  geom_vline(xintercept = mean(sat_data$SAT.Writing.Avg..Score, na.rm = TRUE), color = "red", linetype = "dashed") +
+  geom_vline(xintercept = median(sat_data$SAT.Writing.Avg..Score, na.rm = TRUE), color = "red", linetype = "dashed") +
   theme_classic()
 ```
 
+Eliel's Section:
 
-
+```{r}
+# analyzing how collaborative class number affects english SAT scores through scatter plot.
+ggplot(data= sat_data,
+       aes(x= SAT.English, y= ell_num))+
+         geom_point(position= "jitter")+
+         geom_smooth()+
+         theme_minimal()+
+         labs(title= "Correlation of English Learner Classes and SAT \nEnglish Scores, 2011 - 2012",
+              x= "English Score",
+              y= "English Learner Class numbers")
+```

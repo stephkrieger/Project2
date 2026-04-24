@@ -51,9 +51,18 @@ sat_data <- sat_data |>
 ```
 
 ```{r}
+# mutating an English average SAT section
+sat_data <- sat_data |>
+  mutate(SAT.English = 
+           as.numeric(SAT.Critical.Reading.Avg..Score)+
+           as.numeric(SAT.Writing.Avg..Score))
+```
+
+
+```{r}
 # selecting variables of interest
 sat_data <- sat_data |>
-select(DBN, Name, schoolyear, total_enrollment, SAT.Critical.Reading.Avg..Score, SAT.Math.Avg..Score, SAT.Writing.Avg..Score, Num.of.SAT.Test.Takers, male_num, male_per, female_num, female_per, black_num, black_per, white_num, white_per, hispanic_num, hispanic_per, asian_num, asian_per, selfcontained_num, ctt_num, sped_num, sped_percent, ell_num, ell_percent, SAT.Total)
+select(DBN, Name, SAT.Critical.Reading.Avg..Score, SAT.Math.Avg..Score, SAT.Writing.Avg..Score, Num.of.SAT.Test.Takers, ctt_num, SAT.Total, SAT.English)
 ```
 
 ```{r}
