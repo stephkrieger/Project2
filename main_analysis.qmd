@@ -79,3 +79,19 @@ summary_table |>
     table.font.size = px(14)
   )
 ```
+
+Eliel's Section:
+
+```{r}
+# analyzing how collaborative class number affects SAT scores through scatter plot.
+ggplot(data= sat_data,
+       aes(x= ctt_num, y= SAT.Total))+
+         geom_point(position = "jitter")+
+         geom_smooth()+
+         theme_minimal()+
+         labs(title= "Correlation of Collaborative Class teaching \nwith SAT Scores, 2011 - 2012",
+              x= "Collaborative Class Numbers",
+              y= "SAT Score ")
+```
+
+
