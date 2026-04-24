@@ -93,5 +93,3 @@ ggplot(data= sat_data,
               x= "Collaborative Class Numbers",
               y= "SAT Score ")
 ```
-
-
